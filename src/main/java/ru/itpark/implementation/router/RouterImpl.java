@@ -21,14 +21,13 @@ public class RouterImpl implements Router {
   public Router route(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     switch (request.getRequestURI()) {
-      // mapping -> url -> handler (обработчик)
       case "/":
+        request.setAttribute("items", autoController.getAll());
         request.getRequestDispatcher("/WEB-INF/catalog.jsp").forward(request, response);
-      case "/search.do": // search.do?name=...
+      case "/search":
         final String name = request.getParameter("name");
-        List<Auto> result = autoController.doSearch(name);
-        request.setAttribute("result", result);
-        request.getRequestDispatcher("//").forward(request, response);
+        request.setAttribute("result", autoController.doSearch(name));
+        request.getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
       default:
         response.sendRedirect("/WEB-INF/catalog.jsp");
         return null;

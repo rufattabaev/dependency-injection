@@ -16,4 +16,8 @@ public class AutoController {
   public List<Auto> doSearch(String name) {
     return service.doSearch(name);
   }
+
+  public List<Auto> getAll(){
+    return service.getAll();
+  }
 }

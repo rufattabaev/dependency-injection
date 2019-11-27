@@ -18,4 +18,8 @@ public class AutoService {
     public List<Auto> doSearch(String name) {
         return repository.getByName(name);
     }
+
+  public List<Auto> getAll() {
+    return repository.getAll();
+  }
 }
